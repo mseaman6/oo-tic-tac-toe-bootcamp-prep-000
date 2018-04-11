@@ -77,14 +77,6 @@ def position_taken?(board, index)
 end
 
 
-def turn_count(board)
-  board.count { |position| position == "X" || position == "O" }
-end
-
-def current_player(board)
-  turn_count(board).even?? "X" : "O"
-end
-
 def won?(board)
   WIN_COMBINATIONS.each do |win_combination|
     win_index_1 = win_combination[0]
