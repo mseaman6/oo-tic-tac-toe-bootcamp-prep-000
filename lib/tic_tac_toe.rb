@@ -89,6 +89,39 @@ class TicTacToe
     end
   end
   
+  def full?(board)
+    board.none?{|position| position == "" || position == " "}
+  end
+    
+  def draw?(board)
+    if !won?(board) && full?(board)
+      true
+    end
+  end
+    
+  def over?(board)
+    if won?(board) || full?(board) || draw?(board)
+      true
+    end
+  end
+    
+  def winner(board)
+    if won?(board)
+      win_combination = won?(board)
+      return board[win_combination[0]]
+    end
+  end
+    
+  def play(board)
+    until over?(board)
+      turn(board)
+    end  
+    if won?(board)
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end  
+  end
 
 end
 
@@ -106,36 +139,3 @@ end
 
 
 
-def full?(board)
-  board.none?{|position| position == "" || position == " "}
-end
-  
-def draw?(board)
-  if !won?(board) && full?(board)
-    true
-  end
-end
-  
-def over?(board)
-  if won?(board) || full?(board) || draw?(board)
-    true
-  end
-end
-  
-def winner(board)
-  if won?(board)
-    win_combination = won?(board)
-    return board[win_combination[0]]
-  end
-end
-  
-def play(board)
-  until over?(board)
-    turn(board)
-  end  
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
-    puts "Cat's Game!"
-  end  
-end
